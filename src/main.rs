@@ -1,8 +1,8 @@
 use nannou::prelude::*;
 
-const RADIUS: f32 = 10.0;
+const RADIUS: f32 = 8.0;
 const DIAMETER: f32 = 2.0 * RADIUS;
-const GRID_SIZE: usize = 40 as usize;
+const GRID_SIZE: usize = 80 as usize;
 
 fn main() {
     nannou::app(model).update(update).run();
@@ -159,6 +159,10 @@ fn view(app: &App, model: &Model, frame: Frame) {
             ));
         //        draw.text(i.to_string().as_str()).xy(*element);
     }
+    let text = format!("Elements: {}", model.elements.len());
+    let x = app.window_rect().top_left().x + 50.0;
+    let y = app.window_rect().top_left().y - 10.0;
+    draw.text(text.as_str()).x_y(x, y);
     // Write to the window frame.
     draw.to_frame(app, &frame).unwrap();
 }
